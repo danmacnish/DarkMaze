@@ -6,11 +6,11 @@ using Pix;
 
 public class SparkController : MonoBehaviour
 {
-    public float restTime = 1.0f;
-    // put the points from unity interface
-    public Transform[] wayPointList;
 
-    public Animator bridge; 
+    // put the points from unity interface
+    public List<Transform> wayPointList;
+
+    public Animator bridge;
 
     public GameObject sphere;
 
@@ -27,14 +27,14 @@ public class SparkController : MonoBehaviour
 
     public float speed = 4f;
 
-    public bool stopWhenWaypointReached = false;
-
-    private bool moving = true;
+    public bool destroyWhenWaypointReached = false;
 
     public GameObject player;
     public PlayableDirector cameraTimeline;
 
     private Collider playerCollider;
+
+    Pix.PlayerController playerController;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,57 +42,48 @@ public class SparkController : MonoBehaviour
         {
             playerCollider = player.GetComponent<Collider>();
         }
+        if (playerController == null)
+        {
+            playerController = player.GetComponent<Pix.PlayerController>();
+        }
         if (gapController == null)
         {
             gapController = gap.GetComponent<GapController>();
         }
+        if (targetWayPoint == null)
+        {
+            setWaypoint();
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        // check if we have somewere to walk
-        if (targetWayPoint == null)
-        {
-            this.resetToStartPosition();
-        }
-        if (currentWayPoint > endWayPoint)
-        {
-            this.resetToStartPosition();
-            this.showSpark(false);
-            moving = false;
-            Invoke("startMoving", restTime);
-        }
         walk();
-    }
-
-    void startMoving()
-    {
-        moving = true;
-        this.showSpark(true);
     }
 
     void walk()
     {
-        if (moving)
+        // rotate towards the target
+        transform.forward = Vector3.RotateTowards(transform.forward, targetWayPoint.position - transform.position, speed * Time.deltaTime, 0.0f);
+
+        // move towards the target
+        transform.position = Vector3.MoveTowards(transform.position, targetWayPoint.position, speed * Time.deltaTime);
+
+        if (transform.position == targetWayPoint.position)
         {
-            // rotate towards the target
-            transform.forward = Vector3.RotateTowards(transform.forward, targetWayPoint.position - transform.position, speed * Time.deltaTime, 0.0f);
-
-            // move towards the target
-            transform.position = Vector3.MoveTowards(transform.position, targetWayPoint.position, speed * Time.deltaTime);
-
-            if (transform.position == targetWayPoint.position)
+            if (!destroyWhenWaypointReached)
             {
-                if (!stopWhenWaypointReached)
+                currentWayPoint++;
+                targetWayPoint = wayPointList[currentWayPoint];
+                if (currentWayPoint == endWayPoint)
                 {
-                    currentWayPoint++;
-                    targetWayPoint = wayPointList[currentWayPoint];
+                    destroyWhenWaypointReached = true;
                 }
-                else
-                {
-                    this.showSpark(false);
-                }
+            }
+            else
+            {
+                Destroy(this.gameObject);
             }
         }
     }
@@ -107,48 +98,27 @@ public class SparkController : MonoBehaviour
         targetWayPoint = wayPointList[currentWayPoint];
     }
 
-    public void resetToStartPosition()
-    {
-        currentWayPoint = 0;
-        this.setWaypoint();
-        transform.position = targetWayPoint.position;
-    }
-
     void OnTriggerEnter(Collider other)
     {
         if (other == playerCollider)
         {
+            HealthManager.Instance.hit();
+            playerController.Hit();
             Debug.Log("spark hit player!");
             cameraTimeline.Play();
             //is player isn't in gap, then stop spark at player
             if (!gapController.isTriggered)
             {
                 moveTo(other.transform);
-                stopWhenWaypointReached = true;
-                Invoke("resetSpark", (float)cameraTimeline.duration + 0.5f);
+                destroyWhenWaypointReached = true;
             }
             else
             {
                 //otherwise if player is in gap, set spark to travel all the way until the end
                 //open bridge
                 bridge.SetTrigger("bridgeDown");
-                endWayPoint = wayPointList.Length - 1;
-                Invoke("resetSpark", (float)cameraTimeline.duration + 0.5f);
+                endWayPoint = wayPointList.Count - 1;
             }
         }
-    }
-
-    void resetSpark()
-    {
-        resetToStartPosition();
-        showSpark(true);
-        stopWhenWaypointReached = false;
-    }
-
-    void showSpark(bool show)
-    {
-        sphere.SetActive(show);
-        pointLight.SetActive(show);
-
     }
 }
