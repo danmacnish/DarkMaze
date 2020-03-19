@@ -1,11 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 namespace Pix
 {
-    public class CharacterController : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
+        public int health = 3;
+        public Light m_light;
+        public float deathfade = 1.5f;
+
+        public PlayableDirector camTimeline;
         public float m_Speed = 12f;                 // How fast the tank moves forward and back.
         public float m_TurnSpeed = 180f;            // How fast the tank turns in degrees per second.
         public float m_PitchRange = 0.2f;           // The amount by which the pitch of the engine noises can vary.
@@ -16,11 +22,16 @@ namespace Pix
         private float m_MovementInputValue;         // The current value of the movement input.
         private float m_TurnInputValue;             // The current value of the turn input.
         private float m_OriginalPitch;              // The pitch of the audio source at the start of the scene.
+        private float time = 0.0f;
+        private float lightstartingintensity;
         private ParticleSystem[] m_particleSystems; // References to all the particles systems used by the Tanks
+
 
         private void Awake()
         {
             m_Rigidbody = GetComponent<Rigidbody>();
+            m_light = GetComponentInChildren<Light>();
+            lightstartingintensity = m_light.intensity;
         }
 
 
@@ -70,7 +81,13 @@ namespace Pix
             // Store the value of both input axes.
             m_MovementInputValue = Input.GetAxis(m_MovementAxisName);
             m_TurnInputValue = Input.GetAxis(m_TurnAxisName);
+            if (health <= 0 && camTimeline.state != PlayState.Playing)
+            {
+                m_light.intensity = Mathf.Lerp(lightstartingintensity, 0, time / deathfade);
+                time += Time.deltaTime;
+            }
         }
+
 
 
         private void FixedUpdate()
@@ -101,6 +118,11 @@ namespace Pix
 
             // Apply this rotation to the rigidbody's rotation.
             m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
+        }
+
+        public void Hit()
+        {
+            health -= 1;
         }
     }
 }
