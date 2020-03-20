@@ -25,7 +25,7 @@ public class SparkManager : MonoBehaviour
 
     public Animator bridge;
 
-    float time = 0;
+    float time = 2.0f;
 
     private void Awake()
     {

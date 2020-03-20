@@ -385,11 +385,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419126571}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9984598, y: 0.5, z: 0.49339104}
-  m_Center: {x: 4.999743, y: -0.25, z: -30.734154}
+  m_Size: {x: 149.76445, y: 0.5, z: 146.20029}
+  m_Center: {x: 1.1175461, y: -0.25, z: -16.276413}
 --- !u!65 &419126573
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -401,21 +401,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9984598, y: 0.5, z: 0.4881382}
-  m_Center: {x: 4.999743, y: -0.25, z: -21.26022}
---- !u!65 &419126574
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419126571}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0536098, y: 0.5, z: 9.972942}
-  m_Center: {x: 19.99332, y: -0.25, z: -26.002623}
+  m_Size: {x: 30.07663, y: 0.5, z: 29.997328}
+  m_Center: {x: 4.53533, y: -0.25, z: -5.998933}
 --- !u!65 &419126575
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -427,21 +414,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30.076626, y: 0.5, z: 15.142569}
-  m_Center: {x: 5.4818153, y: -0.25, z: -38.55744}
---- !u!65 &419126576
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419126571}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 30.076626, y: 0.5, z: 30.067696}
-  m_Center: {x: 5.4818153, y: -0.25, z: -5.995846}
+  m_Size: {x: 30.07663, y: 0.5, z: 10.055191}
+  m_Center: {x: 4.53533, y: -0.25, z: -36.01375}
 --- !u!1001 &441952685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -689,6 +663,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bridge
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 421d5eb450562224284acc685795064c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8102921395503212252, guid: 421d5eb450562224284acc685795064c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8850187036931288173, guid: 421d5eb450562224284acc685795064c,
         type: 3}
@@ -1028,13 +1012,13 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 3.45
+  m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1067,7 +1051,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -1185,7 +1169,7 @@ GameObject:
   - component: {fileID: 1214552233}
   - component: {fileID: 1214552234}
   - component: {fileID: 1214552235}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: bridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1250,7 +1234,7 @@ GameObject:
   - component: {fileID: 1238396033}
   - component: {fileID: 1238396034}
   - component: {fileID: 1238396035}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1289,7 +1273,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1322,7 +1306,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
@@ -1763,7 +1747,7 @@ GameObject:
   - component: {fileID: 1881700401}
   - component: {fileID: 1881700404}
   - component: {fileID: 1881700403}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2294,7 +2278,7 @@ GameObject:
   - component: {fileID: 2141445247}
   - component: {fileID: 2141445248}
   - component: {fileID: 2141445249}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2326,12 +2310,12 @@ Rigidbody:
   m_GameObject: {fileID: 2141445245}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 0.3
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
+  m_Interpolate: 1
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &2141445248
 BoxCollider:
@@ -2355,13 +2339,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2141445245}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bc69c6ffd5bf1345aeffbb2a180b072, type: 3}
+  m_Script: {fileID: 11500000, guid: f62cea58706bff945aa2edda75b36508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 0
   health: 3
   m_light: {fileID: 0}
   deathfade: 0.5
+  moveDistance: 1
   camTimeline: {fileID: 183527454}
-  m_Speed: 5
+  m_Speed: 3
   m_TurnSpeed: 180
   m_PitchRange: 0.2

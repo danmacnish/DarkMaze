@@ -34,7 +34,7 @@ public class SparkController : MonoBehaviour
 
     private Collider playerCollider;
 
-    Pix.PlayerController playerController;
+    Pix.PlayerTouchController playerController;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +44,7 @@ public class SparkController : MonoBehaviour
         }
         if (playerController == null)
         {
-            playerController = player.GetComponent<Pix.PlayerController>();
+            playerController = player.GetComponent<Pix.PlayerTouchController>();
         }
         if (gapController == null)
         {
@@ -57,7 +57,7 @@ public class SparkController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
         walk();
     }
