@@ -108,7 +108,10 @@ namespace Pix
             if (Vector3.Distance(m_Rigidbody.position, targetPosition) > 0.2)
             {
                 Vector3 direction = targetPosition - transform.position;
-                direction.Normalize();
+                if (direction.magnitude > 1)
+                {
+                    direction.Normalize();
+                }
                 m_Rigidbody.MovePosition(transform.position + direction * m_Speed * Time.fixedDeltaTime);
             }
         }
@@ -122,37 +125,37 @@ namespace Pix
                 Touch t = Input.GetTouch(0);
                 // if (t.phase == TouchPhase.Began)
                 // {
-                    // raycast to level
-                    RaycastHit hit;
-                    Ray ray = cam.ScreenPointToRay(t.position);
-                    if (Physics.Raycast(ray, out hit))
-                    {
-                        targetPosition = hit.point;
+                // raycast to level
+                RaycastHit hit;
+                Ray ray = cam.ScreenPointToRay(t.position);
+                if (Physics.Raycast(ray, out hit))
+                {
+                    targetPosition = hit.point;
 
-                        // calculate dot product with forward vector
-                        // float dot = Vector3.Dot(direction, transform.forward);
-                        // if (dot > 0.5f)
-                        // {
-                        //     //move forward
-                        //     if (debug) Debug.Log("move forward");
-                        //     //m_Rigidbody.MovePosition(m_Rigidbody.position + transform.forward * Time.fixedDeltaTime);
-                        //     m_Rigidbody.AddForce(transform.forward * m_Speed);
+                    // calculate dot product with forward vector
+                    // float dot = Vector3.Dot(direction, transform.forward);
+                    // if (dot > 0.5f)
+                    // {
+                    //     //move forward
+                    //     if (debug) Debug.Log("move forward");
+                    //     //m_Rigidbody.MovePosition(m_Rigidbody.position + transform.forward * Time.fixedDeltaTime);
+                    //     m_Rigidbody.AddForce(transform.forward * m_Speed);
 
-                        // }
-                        // else if (dot >= -0.5f && dot <= 0.5f)
-                        // {
-                        //     if (debug) Debug.Log("move left or right");
-                        //     //turn left or right
+                    // }
+                    // else if (dot >= -0.5f && dot <= 0.5f)
+                    // {
+                    //     if (debug) Debug.Log("move left or right");
+                    //     //turn left or right
 
-                        // }
-                        // else
-                        // {
-                        //     //go backwards
-                        //     if (debug) Debug.Log("move backwards");
+                    // }
+                    // else
+                    // {
+                    //     //go backwards
+                    //     if (debug) Debug.Log("move backwards");
 
-                        // }
-                        // Create a vector in the direction the tank is facing with a magnitude based on the input, speed and the time between frames.
-                    }
+                    // }
+                    // Create a vector in the direction the tank is facing with a magnitude based on the input, speed and the time between frames.
+                }
                 //}
             }
         }

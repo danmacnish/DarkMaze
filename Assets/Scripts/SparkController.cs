@@ -35,6 +35,7 @@ public class SparkController : MonoBehaviour
     private Collider playerCollider;
 
     Pix.PlayerTouchController playerController;
+    Rigidbody rigidbody;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +55,7 @@ public class SparkController : MonoBehaviour
         {
             setWaypoint();
         }
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -65,12 +67,18 @@ public class SparkController : MonoBehaviour
     void walk()
     {
         // rotate towards the target
-        transform.forward = Vector3.RotateTowards(transform.forward, targetWayPoint.position - transform.position, speed * Time.deltaTime, 0.0f);
+        //transform.forward = Vector3.RotateTowards(transform.forward, targetWayPoint.position - transform.position, speed * Time.deltaTime, 0.0f);
+        Vector3 direction = targetWayPoint.position - transform.position;
+        if (direction.magnitude > 1)
+        {
+            direction.Normalize();
+        }
+        rigidbody.MovePosition(transform.position + direction * speed * Time.deltaTime );
 
         // move towards the target
-        transform.position = Vector3.MoveTowards(transform.position, targetWayPoint.position, speed * Time.deltaTime);
+        //transform.position = Vector3.MoveTowards(transform.position, targetWayPoint.position, speed * Time.deltaTime);
 
-        if (transform.position == targetWayPoint.position)
+        if (Vector3.Distance(transform.position, targetWayPoint.position) < 0.1)
         {
             if (!destroyWhenWaypointReached)
             {

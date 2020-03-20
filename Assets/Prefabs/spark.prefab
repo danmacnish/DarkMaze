@@ -71,7 +71,7 @@ MonoBehaviour:
   gap: {fileID: 0}
   currentWayPoint: 0
   endWayPoint: 1
-  speed: 15
+  speed: 10
   destroyWhenWaypointReached: 0
   player: {fileID: 0}
   cameraTimeline: {fileID: 0}
