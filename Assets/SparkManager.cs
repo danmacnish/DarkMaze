@@ -68,7 +68,6 @@ public class SparkManager : MonoBehaviour
         controller.wayPointList = waypoints;
         controller.player = player;
         controller.speed = speed;
-        controller.cameraTimeline = cameraTimeline;
         controller.bridge = bridge;
         controller.gap = gap;
         controller.endWayPoint = endWayPoint;

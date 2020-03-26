@@ -30,7 +30,6 @@ public class SparkController : MonoBehaviour
     public bool destroyWhenWaypointReached = false;
 
     public GameObject player;
-    public PlayableDirector cameraTimeline;
 
     private Collider playerCollider;
 
@@ -113,7 +112,6 @@ public class SparkController : MonoBehaviour
             HealthManager.Instance.hit();
             playerController.Hit();
             Debug.Log("spark hit player!");
-            cameraTimeline.Play();
             //is player isn't in gap, then stop spark at player
             if (!gapController.isTriggered)
             {
@@ -126,6 +124,7 @@ public class SparkController : MonoBehaviour
                 //open bridge
                 bridge.SetTrigger("bridgeDown");
                 endWayPoint = wayPointList.Count - 1;
+                destroyWhenWaypointReached = false;
             }
         }
     }

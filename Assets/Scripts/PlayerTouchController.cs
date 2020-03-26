@@ -7,6 +7,10 @@ namespace Pix
 {
     public class PlayerTouchController : MonoBehaviour
     {
+        public List<float> lightBrightness;
+        public List<float> lightRange;
+        public List<PlayableAsset> timelinePlayables;
+        public GameObject levelBounds;
         public bool debug = true;
         public int health = 3;
         public Light m_light;
@@ -18,9 +22,6 @@ namespace Pix
         public float m_Speed = 12f;                 // How fast the tank moves forward and back.
         public float m_TurnSpeed = 180f;            // How fast the tank turns in degrees per second.
         public float m_PitchRange = 0.2f;           // The amount by which the pitch of the engine noises can vary.
-
-        private string m_MovementAxisName;          // The name of the input axis for moving forward and back.
-        private string m_TurnAxisName;              // The name of the input axis for turning.
         private Rigidbody m_Rigidbody;              // Reference used to move the tank.
         private float m_MovementInputValue;         // The current value of the movement input.
         private float m_TurnInputValue;             // The current value of the turn input.
@@ -33,12 +34,18 @@ namespace Pix
 
         private Vector3 targetPosition;
 
+        private List<Collider> levelBoundingColliders;
+
+        private bool atLevelBounds = false;
+
+        private int hitCount = 0;
+
 
         private void Awake()
         {
             m_Rigidbody = GetComponent<Rigidbody>();
             m_light = GetComponentInChildren<Light>();
-            lightstartingintensity = m_light.intensity;
+            SetLightValues();
             cam = Camera.main;
         }
 
@@ -78,20 +85,16 @@ namespace Pix
 
         private void Start()
         {
-            // The axes names are based on player number.
-            m_MovementAxisName = "Vertical";
-            m_TurnAxisName = "Horizontal";
+            hitCount = 0;
+            SetPlayableAsset();
             targetPosition = transform.position;
+            levelBoundingColliders = new List<Collider>(levelBounds.GetComponents<Collider>());
+            atLevelBounds = false;
         }
 
 
         private void Update()
         {
-            if (health <= 0 && camTimeline.state != PlayState.Playing)
-            {
-                m_light.intensity = Mathf.Lerp(lightstartingintensity, 0, time / deathfade);
-                time += Time.deltaTime;
-            }
         }
 
 
@@ -115,6 +118,7 @@ namespace Pix
                 m_Rigidbody.MovePosition(transform.position + direction * m_Speed * Time.fixedDeltaTime);
             }
         }
+
         private void GetTargetPosition()
         {
             // get input
@@ -162,7 +166,46 @@ namespace Pix
 
         public void Hit()
         {
-            health -= 1;
+            if (health > 0)
+            {
+                health -= 1;
+                hitCount++;
+                camTimeline.Play();
+                Invoke("SetPlayableAsset", (float)camTimeline.playableAsset.duration);
+                Invoke("SetLightValues", (float)camTimeline.playableAsset.duration);
+            }
+        }
+
+        private void SetLightValues()
+        {
+            m_light.intensity = lightBrightness[hitCount];
+            m_light.range = lightRange[hitCount];
+        }
+
+        private void SetPlayableAsset()
+        {
+            camTimeline.playableAsset = timelinePlayables[(int)Mathf.Clamp(hitCount, 0, timelinePlayables.Count - 1)];
+        }
+        void OnTriggerEnter(Collider other)
+        {
+            foreach (Collider bound in levelBoundingColliders)
+            {
+                if (other == bound)
+                {
+                    atLevelBounds = true;
+                }
+            }
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+            foreach (Collider bound in levelBoundingColliders)
+            {
+                if (other == bound)
+                {
+                    atLevelBounds = false;
+                }
+            }
         }
     }
 }

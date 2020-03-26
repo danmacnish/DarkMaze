@@ -277,7 +277,7 @@ PlayableDirector:
   m_GameObject: {fileID: 183527453}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 22773cd16416a7f4bbd15253104b6ba0, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 4ed6747919624fc4d8b80739abc8cada, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -288,6 +288,18 @@ PlayableDirector:
   - key: {fileID: 1300218691378637639, guid: 22773cd16416a7f4bbd15253104b6ba0, type: 2}
     value: {fileID: 1108892931}
   - key: {fileID: -1068306675700452880, guid: 22773cd16416a7f4bbd15253104b6ba0, type: 2}
+    value: {fileID: 1238396035}
+  - key: {fileID: -9094385154135067010, guid: 71a00c549b85b994b91d7f52ce72c35d, type: 2}
+    value: {fileID: 682772614}
+  - key: {fileID: 1300218691378637639, guid: 71a00c549b85b994b91d7f52ce72c35d, type: 2}
+    value: {fileID: 1108892931}
+  - key: {fileID: -1068306675700452880, guid: 71a00c549b85b994b91d7f52ce72c35d, type: 2}
+    value: {fileID: 1238396035}
+  - key: {fileID: -9094385154135067010, guid: 4ed6747919624fc4d8b80739abc8cada, type: 2}
+    value: {fileID: 682772614}
+  - key: {fileID: 1300218691378637639, guid: 4ed6747919624fc4d8b80739abc8cada, type: 2}
+    value: {fileID: 1108892931}
+  - key: {fileID: -1068306675700452880, guid: 4ed6747919624fc4d8b80739abc8cada, type: 2}
     value: {fileID: 1238396035}
   m_ExposedReferences:
     m_References:
@@ -349,7 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sparkPrefab: {fileID: 4166012710402368857, guid: c6a8487a8dcd8274f95b75cc301473ec,
     type: 3}
-  delayBetweenSparks: 3.67
+  delayBetweenSparks: 4
   SparkWaypoints: {fileID: 2044705893}
   endWayPoint: 1
   speed: 15
@@ -1470,7 +1482,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 24.06
-  m_Range: 6.71
+  m_Range: 9.06
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -2544,6 +2556,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62cea58706bff945aa2edda75b36508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightBrightness:
+  - 24.06
+  - 20
+  - 15
+  - 0
+  lightRange:
+  - 9.06
+  - 6.71
+  - 5
+  - 0
+  timelinePlayables:
+  - {fileID: 11400000, guid: 71a00c549b85b994b91d7f52ce72c35d, type: 2}
+  - {fileID: 11400000, guid: 22773cd16416a7f4bbd15253104b6ba0, type: 2}
+  - {fileID: 11400000, guid: 4ed6747919624fc4d8b80739abc8cada, type: 2}
   levelBounds: {fileID: 1028134183}
   debug: 0
   health: 3
