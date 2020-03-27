@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 150776976}
   - component: {fileID: 150776975}
   m_Layer: 0
-  m_Name: Image (1)
+  m_Name: health1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,7 +147,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150776973}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.00026786258}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0044009723}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1541985866}
@@ -155,9 +155,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0.0002746582, y: 0}
+  m_AnchoredPosition: {x: 24.996338, y: -0.0018920898}
   m_SizeDelta: {x: 50, y: 50}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &150776975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -771,7 +771,7 @@ GameObject:
   - component: {fileID: 666196356}
   - component: {fileID: 666196355}
   m_Layer: 0
-  m_Name: Image
+  m_Name: health2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1704,7 +1704,7 @@ GameObject:
   - component: {fileID: 1477879420}
   - component: {fileID: 1477879419}
   m_Layer: 0
-  m_Name: Image (2)
+  m_Name: health3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1754,7 +1754,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1477879418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.00010787469}
+  m_LocalPosition: {x: 0, y: 0, z: 0.018035907}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1541985866}
@@ -1762,9 +1762,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -24.98523, y: 0.007019043}
   m_SizeDelta: {x: 50, y: 50}
-  m_Pivot: {x: 1, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1541985865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1881,6 +1881,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1718688193}
   - component: {fileID: 1718688192}
+  - component: {fileID: 1718688194}
   m_Layer: 0
   m_Name: HealthUI
   m_TagString: Untagged
@@ -1900,10 +1901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9546d73a41d2d748ac4c1c5243be4eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthDots:
-  - {fileID: 150776973}
-  - {fileID: 666196353}
-  - {fileID: 1477879418}
+  anim: {fileID: 1718688194}
   fadeTime: 0.5
 --- !u!4 &1718688193
 Transform:
@@ -1920,6 +1918,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1718688194
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718688191}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8a6a3c0af815d8a41b6b23ee6ae64438, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1804342405
 GameObject:
   m_ObjectHideFlags: 0

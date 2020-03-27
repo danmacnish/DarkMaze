@@ -109,7 +109,7 @@ public class SparkController : MonoBehaviour
     {
         if (other == playerCollider)
         {
-            HealthManager.Instance.hit();
+            HealthManager.Instance.hit(0.0f);
             playerController.Hit();
             Debug.Log("spark hit player!");
             //is player isn't in gap, then stop spark at player

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Animations;
 
 public class HealthManager : MonoBehaviour
 {
@@ -16,37 +17,24 @@ public class HealthManager : MonoBehaviour
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
-        } else {
+        }
+        else
+        {
             _instance = this;
         }
     }
 
-    public GameObject[] healthDots;
+    public Animator anim;
 
     public float fadeTime = 0.5f;
 
-    private int _hits = 0;
+    private int hits = 0;
 
-    private int hits
-    {
-        set
-        {
-            _hits = (int)Mathf.Clamp(value, 0, healthDots.Length);
-        }
-        get
-        {
-            return _hits;
-        }
-    }
 
     // Start is called before the first frame update
     void Start()
     {
         hits = 0;
-        foreach (GameObject img in healthDots)
-        {
-            img.SetActive(true);
-        }
     }
 
     // Update is called once per frame
@@ -55,13 +43,16 @@ public class HealthManager : MonoBehaviour
 
     }
 
-    public void hit()
+    public void hit(float delay = 0.0f)
     {
+        StartCoroutine(_hit(delay));
+    }
+
+    private IEnumerator _hit(float time)
+    {
+        yield return new WaitForSeconds(time);
         Debug.Log("health hit!");
         hits += 1;
-        for (int i = 0; i < hits; i++)
-        {
-            healthDots[i].SetActive(false);
-        }
+        anim.SetTrigger("hit");
     }
 }
